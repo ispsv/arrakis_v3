@@ -10,33 +10,24 @@ public class Trade {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer tradeId;
 
-    @Column(nullable = false)
-    private String tradeType;
-
-    @Column(nullable = false)
-    private String tradeCurrency;
-
-    @Column(nullable = false)
-    private Integer quantity;
-
-    @Column(nullable = false)
-    private Timestamp tradeSettlementDate;
-
-    @Column(nullable = false)
-    private String tradeStatus;
-
-    @Column(nullable = false)
-    private Timestamp tradeDate;
-
     @ManyToOne
     @JoinColumn(name = "book_id")
-    @Column(nullable = false)
     private Book book;
 
     @ManyToOne
-    @JoinColumn(name = "bond_id")
-    @Column(nullable = false)
+    @JoinColumn(name = "bond_id") // Foreign key column in the Bond table
     private Bond bond;
+
+    @ManyToOne
+    @JoinColumn(name = "bond_holder_id")
+    private BondHolder bondHolder;
+
+    private String type;
+    private String currency;
+    private Integer quantity;
+    private Timestamp settlementDate;
+    private String status;
+    private Timestamp date;
 
     public Integer getTradeId() {
         return tradeId;
@@ -44,54 +35,6 @@ public class Trade {
 
     public void setTradeId(Integer tradeId) {
         this.tradeId = tradeId;
-    }
-
-    public String getTradeType() {
-        return tradeType;
-    }
-
-    public void setTradeType(String tradeType) {
-        this.tradeType = tradeType;
-    }
-
-    public String getTradeCurrency() {
-        return tradeCurrency;
-    }
-
-    public void setTradeCurrency(String tradeCurrency) {
-        this.tradeCurrency = tradeCurrency;
-    }
-
-    public Integer getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
-    }
-
-    public Timestamp getTradeSettlementDate() {
-        return tradeSettlementDate;
-    }
-
-    public void setTradeSettlementDate(Timestamp tradeSettlementDate) {
-        this.tradeSettlementDate = tradeSettlementDate;
-    }
-
-    public String getTradeStatus() {
-        return tradeStatus;
-    }
-
-    public void setTradeStatus(String tradeStatus) {
-        this.tradeStatus = tradeStatus;
-    }
-
-    public Timestamp getTradeDate() {
-        return tradeDate;
-    }
-
-    public void setTradeDate(Timestamp tradeDate) {
-        this.tradeDate = tradeDate;
     }
 
     public Book getBook() {
@@ -108,5 +51,61 @@ public class Trade {
 
     public void setBond(Bond bond) {
         this.bond = bond;
+    }
+
+    public BondHolder getBondHolder() {
+        return bondHolder;
+    }
+
+    public void setBondHolder(BondHolder bondHolder) {
+        this.bondHolder = bondHolder;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getCurrency() {
+        return currency;
+    }
+
+    public void setCurrency(String currency) {
+        this.currency = currency;
+    }
+
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
+    }
+
+    public Timestamp getSettlementDate() {
+        return settlementDate;
+    }
+
+    public void setSettlementDate(Timestamp settlementDate) {
+        this.settlementDate = settlementDate;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public Timestamp getDate() {
+        return date;
+    }
+
+    public void setDate(Timestamp date) {
+        this.date = date;
     }
 }

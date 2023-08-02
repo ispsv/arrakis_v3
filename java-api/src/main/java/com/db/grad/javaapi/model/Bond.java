@@ -9,33 +9,22 @@ import java.sql.Timestamp;
 public class Bond {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "bond_id")
     private Integer bondId;
-
-    @Column(nullable = false)
-    private String bondHolderName;
-
-    @Column(nullable = false)
     private BigDecimal unitPrice;
 
-    @Column(nullable = false)
     private BigDecimal couponPercent;
 
-    @Column(nullable = false)
-    private String bondCurrency;
+    private String currency;
 
-    @Column(nullable = false)
     private String cusip;
 
-    @Column(nullable = false)
     private Integer faceValueMn;
 
-    @Column(nullable = false)
     private String isin;
 
-    @Column(nullable = false)
     private String issuerName;
 
-    @Column(nullable = false)
     private Timestamp bondMaturityDate;
 
     public Integer getBondId() {
@@ -44,14 +33,6 @@ public class Bond {
 
     public void setBondId(Integer bondId) {
         this.bondId = bondId;
-    }
-
-    public String getBondHolderName() {
-        return bondHolderName;
-    }
-
-    public void setBondHolderName(String bondHolderName) {
-        this.bondHolderName = bondHolderName;
     }
 
     public BigDecimal getUnitPrice() {
@@ -70,12 +51,12 @@ public class Bond {
         this.couponPercent = couponPercent;
     }
 
-    public String getBondCurrency() {
-        return bondCurrency;
+    public String getCurrency() {
+        return currency;
     }
 
-    public void setBondCurrency(String bondCurrency) {
-        this.bondCurrency = bondCurrency;
+    public void setCurrency(String currency) {
+        this.currency = currency;
     }
 
     public String getCusip() {
@@ -117,6 +98,4 @@ public class Bond {
     public void setBondMaturityDate(Timestamp bondMaturityDate) {
         this.bondMaturityDate = bondMaturityDate;
     }
-
-    // Constructors, getters, setters, and other methods
 }
