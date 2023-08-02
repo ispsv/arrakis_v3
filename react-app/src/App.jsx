@@ -1,17 +1,18 @@
 import React from "react";
 // import { AllBonds } from "./components/pets/AllBonds";
-import { Pets } from "./components/pets/Pets";
+// import { Pets } from "./components/pets/Pets";
 // import { Practice } from "./components/pets/Practice";
 // import { BondDetail } from "./components/pets/BondDetail";
 // import { ExpandedBondDetail } from "./components/pets/ExpandedBondDetail";
-import AllBonds from "./components/pets/AllBonds";
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { Route, Routes } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import './App.css';
+import AllBonds from "./components/pets/AllBonds";
 import UserBonds from "./components/pets/UserBonds";
+import { Welcome } from "./components/pets/Welcome";
 
 // const App = () => {
 function App() {
@@ -23,7 +24,7 @@ function App() {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto text-center">
-            <Navbar.Brand href="/" className="navbar-brand text-center">Welcome</Navbar.Brand>
+            <Navbar.Brand href="/" className="navbar-brand text-center">Home</Navbar.Brand>
             
               <Nav.Link href="/allbonds" className="nav-link nav-item text-center">All Bonds</Nav.Link>
              
@@ -39,7 +40,7 @@ function App() {
         {/* <Route path="allbonds" element={<Pets />} /> */}
         <Route path="allbonds" element={<AllBonds/>} />
         <Route path="userbonds" element={<UserBonds/>} />
-        <Route path="/" element={<Pets />} />
+        <Route path="/" element={<Welcome />} />
       </Routes>
 
       
