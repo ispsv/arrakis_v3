@@ -4,35 +4,20 @@ import styles from "./Pets.module.css";
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 
-export const ExpandedBondDetail = () => {
-    const [pets, setPets] = useState([]);
-
-    useEffect(() => {
-      getAllBonds()
-            .then(({data}) => {
-            setPets(data);
-            });
-    }, []);
+export const ExpandedBondDetail = (props) => {
   return (
-    <>
-        { pets.map(pet => 
-        <div className={styles.pets}>
-        
           <Card className="card bg-secondary mb-3 text-center">
           <Card.Title className="card-header"> 
-          <div>Bond ID: {pet.id}</div>
+          <div>Bond ID: {props.info.id}</div>
           </Card.Title>
           <Card.Body className="card-body">
-          <Card.Text className="card-text"> Bond Holder Name: {pet.name}</Card.Text>
-          <Card.Text className="card-text text-danger"> Bond Maturity Date: {pet.name}</Card.Text>
-          <Card.Text className="card-text"> Bond Type: {pet.age}</Card.Text>
-          <Card.Text className="card-text"> Status: {pet.age}</Card.Text>
+          <Card.Text className="card-text"> Bond Holder Name: {props.info.name}</Card.Text>
+          <Card.Text className="card-text text-danger"> Bond Maturity Date: {props.info.name}</Card.Text>
+          <Card.Text className="card-text"> Bond Type: {props.info.age}</Card.Text>
+          <Card.Text className="card-text"> Status: {props.info.age}</Card.Text>
           <Card.Text className="card-text"><Button variant="primary" className="btn btn-secondary">View</Button></Card.Text>
           
         </Card.Body>
       </Card>
-      </div>) 
-        }
-    </>
   )
 };

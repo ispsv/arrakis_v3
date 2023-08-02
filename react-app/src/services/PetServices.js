@@ -9,3 +9,7 @@ export const getAllBonds = () => {
   const pets = axios.get(`${hostNameUrl}/dogs`);
   return pets;
 };
+export const getUserBonds = () => {
+  const pets = axios.get(`${hostNameUrl}/dogs`);
+  return pets;
+};

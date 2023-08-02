@@ -37,7 +37,11 @@
   }
 }
 #logout {
-  margin-left: 40px;
   padding: auto;
 
+}
+.subnav {
+  margin: 1%;
+  padding: auto;
+  width: 95%;
 }
