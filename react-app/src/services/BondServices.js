@@ -19,3 +19,8 @@ export const getBondDetails = (id) => {
     console.log(selected_bond);
     return selected_bond;
 }
+export const getTradesDetails = (id) => {
+  const all_trades_for_selected_bond  = axios.get(`${hostNameUrl}/bonds/${id}/trades`);
+  // console.log(all_trades_for_selected_bond);
+  return all_trades_for_selected_bond;
+}
