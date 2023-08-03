@@ -1,70 +1,93 @@
 import React, { useState, useEffect } from "react";
-import { findPets } from "../../services/BondServices";
-import styles from "./Pets.module.css";
+import { getBondDetails} from "../../services/BondServices";
 import Table from 'react-bootstrap/Table';
+import { useParams } from 'react-router-dom';
+import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
+import '../../App.css';
 
-export const ViewBond = (props) => {
-    const [ViewBond, setViewBond] = useState([]);
+const ViewBond = () => {
+    // const [ViewBond, setViewBond] = useState([]);
 
-    useEffect(() => {
-      findPets()
-            .then(({data}) => {
-            setViewBond(data);
-            });
-    }, []);
+        // useEffect(() => {
+        //   findPets()
+        //         .then(({data}) => {
+        //         setViewBond(data);
+        //         });
+        // }, []);
+  const { bondId } = useParams();
+  const [bondDetails, setBondDetails] = useState({});
+  useEffect(() => {
+    // Fetch bond details using bondId
+    getBondDetails(bondId)
+      .then((data) => {
+        setBondDetails(data);
+      })
+      .catch((error) => {
+        console.error('Error fetching bond details:', error);
+      });
+  }, [bondId]);
   return (
     <>
-            <Table className="table-success" >
+    <div className="list-group text-center">
+        <div className="d-flex justify-content-between subnav">
+          <h5 style={{marginLeft: "4.5%", marginTop: "1%"}}>Bond: {bondDetails.bondId}</h5>
+          
+        </div>
+      </div>
+      <Container fluid="md-4" style={{marginLeft: "4%", marginTop: "2%", width: "93%"}} >
+      
+            <Table className="table-light" >
             <thead>
             <tr>
-              <th>Column Name</th>
+              <th>Property</th>
               <th>Data</th>
             </tr>
             </thead>
             <tbody>
             <tr>
               <td>BondId</td>
-              <td>{props.BondId}</td>
+              <td>{bondDetails.bondId}</td>
             </tr>
             <tr>
               <td>BondHolders</td>
-              <td>{props.BondId}</td>
+              <td>{bondDetails.bondId}</td>
             </tr>
             <tr>
               <td>UnitPrice</td>
-              <td>{props.BondId}</td>
+              <td>{bondDetails.bondId}</td>
             </tr>
             <tr>
               <td>CouponPercent</td>
-              <td>{pet.id}</td>
+              <td>{bondDetails.bondId}</td>
             </tr>
             <tr>
               <td>BondCurrency</td>
-              <td>{pet.id}</td>
+              <td>{bondDetails.bondId}</td>
             </tr>
             <tr>
               <td>Cusip</td>
-              <td>{pet.id}</td>
+              <td>{bondDetails.bondId}</td>
             </tr>
             <tr>
               <td>FaceValueMn</td>
-              <td>{pet.id}</td>
+              <td>{bondDetails.bondId}</td>
             </tr>
             <tr>
-              <td>Issuer_name</td>
-              <td>{pet.id}</td>
+              <td>IssuerName</td>
+              <td>{bondDetails.bondId}</td>
             </tr>
             <tr>
               <td>BondMaturityDate</td>
-              <td>{pet.id}</td>
+              <td>{bondDetails.bondId}</td>
             </tr>
             </tbody>
             </Table>
-
-        {/* // </div> */}
+            </Container>
     </>
   )
 };
 
 
 
+export default ViewBond;

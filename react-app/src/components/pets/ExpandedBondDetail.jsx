@@ -1,16 +1,21 @@
-import React, { useState, useEffect } from "react";
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
+import React, {useState, useEffect} from 'react';
+import { Link } from 'react-router-dom';
+// import { ViewBond } from "./ViewBond";
 
 export const ExpandedBondDetail = (props) => {
 
+  // Colour of statue and maturity dates
   const bondMaturityDate = new Date(props.info.bondMaturityDate);
   const status = new String(props.info.status);
   const currentDate = new Date();
   const active = "active"
-
   const isDateBeforeCurrentDate = bondMaturityDate < currentDate;
   const isActive = status == active;
+
+  // View bond data collection
+  const viewBondURL = `/viewbond/${props.info.bondId}`;
 
   return (
           <Card className="card bg-secondary mb-3 text-center">
@@ -32,7 +37,7 @@ export const ExpandedBondDetail = (props) => {
             {props.info.status}
           </span>
         </Card.Text>
-          <Card.Text className="card-text"><Button variant="primary" className="btn btn-secondary">View</Button></Card.Text>
+          <Card.Text className="card-text"><Link to={viewBondURL}><Button variant="primary" className="btn btn-secondary">View</Button></Link></Card.Text>
           
         </Card.Body>
       </Card>

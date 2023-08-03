@@ -1,9 +1,4 @@
 import React from "react";
-// import { AllBonds } from "./components/pets/AllBonds";
-// import { Pets } from "./components/pets/Pets";
-// import { Practice } from "./components/pets/Practice";
-// import { BondDetail } from "./components/pets/BondDetail";
-// import { ExpandedBondDetail } from "./components/pets/ExpandedBondDetail";
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -13,7 +8,7 @@ import './App.css';
 import AllBonds from "./components/pets/AllBonds";
 import UserBonds from "./components/pets/UserBonds";
 import { Welcome } from "./components/pets/Welcome";
-// import { ViewBond } from "./components/pets/ViewBond";
+import ViewBond from "./components/pets/ViewBond";
 
 // const App = () => {
 function App() {
@@ -30,7 +25,7 @@ function App() {
               <Nav.Link href="/allbonds" className="nav-link nav-item text-center">All Bonds</Nav.Link>
              
               <Nav.Link href="/userbonds" className="nav-link nav-item text-center">Your Bonds</Nav.Link>
-              {/* <Nav.Link href="/viewbond" className="nav-link nav-item text-center">View Bond</Nav.Link> */}
+              <Nav.Link href="/viewbond" className="nav-link nav-item text-center">View Bond</Nav.Link>
               <Button variant="primary" className="btn btn-primary-disabled " id="logout " style={{float: "right"}}>Logout</Button>
             </Nav>
           </Navbar.Collapse>
@@ -42,7 +37,7 @@ function App() {
         {/* <Route path="allbonds" element={<Pets />} /> */}
         <Route path="allbonds" element={<AllBonds/>} />
         <Route path="userbonds" element={<UserBonds/>} />
-        {/* <Route path="viewbond" element={<ViewBond />} /> */}
+        <Route path="viewbond" element={<ViewBond />} />
         <Route path="/" element={<Welcome />} />
       </Routes>
 
