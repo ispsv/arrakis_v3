@@ -6,26 +6,24 @@ import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import '../../App.css';
 
-const ViewBond = () => {
-    // const [ViewBond, setViewBond] = useState([]);
-
-        // useEffect(() => {
-        //   findPets()
-        //         .then(({data}) => {
-        //         setViewBond(data);
-        //         });
-        // }, []);
-  const { bondId } = useParams();
+const ViewBond = (props) => {
+  const bondId  = props.info;
+  console.log(props);
+  
+  // const bondId  = 1;
   const [bondDetails, setBondDetails] = useState({});
   useEffect(() => {
     // Fetch bond details using bondId
     getBondDetails(bondId)
-      .then((data) => {
-        setBondDetails(data);
-      })
-      .catch((error) => {
-        console.error('Error fetching bond details:', error);
-      });
+    .then(res => {
+      console.log(res.data)
+      setBondDetails(res.data);
+    })
+    .catch(err => {
+      setBondDetails([]);
+        console.log(err);
+    })
+    // console.log(bondId)
   }, [bondId]);
   return (
     <>
@@ -35,55 +33,70 @@ const ViewBond = () => {
           
         </div>
       </div>
-      <Container fluid="md-4" style={{marginLeft: "4%", marginTop: "2%", width: "93%"}} >
-      
-            <Table className="table-light" >
+      <Container fluid="md-4" style={{marginLeft: "4%", marginTop: "2%", width: "93%"}}>
+          <Table className="table-light" >
             <thead>
-            <tr>
-              <th>Property</th>
-              <th>Data</th>
-            </tr>
+              <tr>
+                <th>ISIN</th>
+                <th>Type</th>
+                <th>Issuer</th>
+                <th>Maturity</th>
+                <th>Face Value</th>
+                <th>Currency</th>
+                <th>Coupon %</th>
+                <th>Status</th>
+              </tr>
             </thead>
             <tbody>
-            <tr>
-              <td>BondId</td>
-              <td>{bondDetails.bondId}</td>
-            </tr>
-            <tr>
-              <td>BondHolders</td>
-              <td>{bondDetails.bondId}</td>
-            </tr>
-            <tr>
-              <td>UnitPrice</td>
-              <td>{bondDetails.bondId}</td>
-            </tr>
-            <tr>
-              <td>CouponPercent</td>
-              <td>{bondDetails.bondId}</td>
-            </tr>
-            <tr>
-              <td>BondCurrency</td>
-              <td>{bondDetails.bondId}</td>
-            </tr>
-            <tr>
-              <td>Cusip</td>
-              <td>{bondDetails.bondId}</td>
-            </tr>
-            <tr>
-              <td>FaceValueMn</td>
-              <td>{bondDetails.bondId}</td>
-            </tr>
-            <tr>
-              <td>IssuerName</td>
-              <td>{bondDetails.bondId}</td>
-            </tr>
-            <tr>
-              <td>BondMaturityDate</td>
-              <td>{bondDetails.bondId}</td>
-            </tr>
+              <tr>
+                <td>{bondDetails.bondId}</td>
+                <td>{bondDetails.bondId}</td>
+                <td>{bondDetails.bondId}</td>
+                <td>{bondDetails.bondId}</td>
+                <td>{bondDetails.bondId}</td>
+                <td>{bondDetails.bondId}</td>
+                <td>{bondDetails.bondId}</td>
+                <td>{bondDetails.bondId}</td>
+              </tr>
+            </tbody>
+          </Table>
+        </Container>
+        <Container fluid="md-4" style={{marginLeft: "4%", marginTop: "22%", width: "93%"}} >
+            <Table className="table-light" >
+            <thead>
+              <tr>
+                <th>ISIN</th>
+                <th>Book Id</th>
+                <th>Client</th>
+                <th>Status</th>
+                <th>Quantity</th>
+                <th>Unit Price</th>
+                <th>Currency</th>
+                <th>Buy/Sell</th>
+                <th>Trade Date</th>
+                <th>Settlement Date</th>
+
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{bondDetails.bondId}</td>
+                <td>{bondDetails.bondId}</td>
+                <td>{bondDetails.bondId}</td>
+                <td>{bondDetails.bondId}</td>
+                <td>{bondDetails.bondId}</td>
+                <td>{bondDetails.bondId}</td>
+                <td>{bondDetails.bondId}</td>
+                <td>{bondDetails.bondId}</td>
+                <td>{bondDetails.bondId}</td>
+                <td>{bondDetails.bondId}</td>
+              </tr>
             </tbody>
             </Table>
             </Container>
+
+        
+
     </>
   )
 };
