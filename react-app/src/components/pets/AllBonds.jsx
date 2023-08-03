@@ -8,6 +8,7 @@ import Button from 'react-bootstrap/Button';
 
 const AllBonds = () => {
   const [Bonds, setBonds] = useState([]);
+  const [sortOrder, setSortOrder] = useState('asc'); // Track the sorting order
 
   useEffect( () => {
     getBondsFromAPI();
@@ -25,12 +26,29 @@ const AllBonds = () => {
     })
   }
 
+
+  const handleSortClick = () => {
+    const sortedBonds = [...Bonds].sort((a, b) => {
+      if (sortOrder === 'asc') {
+        return a.bondId - b.bondId;
+      } else {
+        return b.bondId - a.bondId;
+      }
+    });
+
+    setBonds(sortedBonds);
+
+    setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
+  }
+
+
+
   return (
     <>
     <div className="list-group text-center">
         <div className="d-flex justify-content-between subnav">
           <h5 style={{marginLeft: "4.5%", marginTop: "1%"}}>All Active Bonds</h5>
-          <Button variant="primary" className="btn btn-secondary" id="sort">Sort</Button>
+          <Button variant="primary" className="btn btn-secondary" id="sort" onClick={handleSortClick}>Sort</Button>
         </div>
       </div>
     <h4 style={{marginLeft: "4.5%", marginTop:"2%", marginBottom: "1%"}}> Total count is: <small className="text-body-secondary">{Bonds.length}</small></h4>
