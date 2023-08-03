@@ -29,6 +29,8 @@ public class Bond {
 
     private String status;
 
+    private String type;
+
     private Date bondMaturityDate;
 
     public Integer getBondId() {
@@ -101,6 +103,14 @@ public class Bond {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getType() {
+        return type;
     }
 
     public Date getBondMaturityDate() {
