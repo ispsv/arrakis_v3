@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 @Service
@@ -20,20 +21,18 @@ public class BookService {
     }
 
     public Book getBookById(Integer bookId) {
-        if (this.bookRepository.existsById(bookId)) {
-            return this.bookRepository.getReferenceById(bookId);
-        } else {
-            return null;
-        }
+        Optional<Book> book = bookRepository.findById(bookId);
+        return book.orElse(null);
     }
 
     public List<Book> getAllBooks() {
-        return this.bookRepository.findAll();
+        return bookRepository.findAll();
     }
 
     public Set<User> getBookForUser(Integer bookId) {
-        if (this.bookRepository.existsById(bookId)) {
-            return this.bookRepository.findUsersByBookId(bookId);
+        Optional<Book> book = bookRepository.findById(bookId);
+        if (book.isPresent()) {
+            return bookRepository.findUsersByBookId(bookId);
         } else {
             return null;
         }

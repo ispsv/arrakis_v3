@@ -30,4 +30,5 @@ public class TradeService {
     public List<Trade> getAllTrades() {
         return this.tradeRepository.findAll();
     }
+
 }

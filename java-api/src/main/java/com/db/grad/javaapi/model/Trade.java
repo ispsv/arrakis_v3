@@ -1,6 +1,7 @@
 package com.db.grad.javaapi.model;
 
 import javax.persistence.*;
+import java.sql.Date;
 import java.sql.Timestamp;
 
 @Entity
@@ -25,9 +26,9 @@ public class Trade {
     private String type;
     private String currency;
     private Integer quantity;
-    private Timestamp settlementDate;
+    private Date settlementDate;
     private String status;
-    private Timestamp date;
+    private Date date;
 
     public Integer getTradeId() {
         return tradeId;
@@ -85,11 +86,11 @@ public class Trade {
         this.quantity = quantity;
     }
 
-    public Timestamp getSettlementDate() {
+    public Date getSettlementDate() {
         return settlementDate;
     }
 
-    public void setSettlementDate(Timestamp settlementDate) {
+    public void setSettlementDate(Date settlementDate) {
         this.settlementDate = settlementDate;
     }
 
@@ -101,11 +102,11 @@ public class Trade {
         this.status = status;
     }
 
-    public Timestamp getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(Timestamp date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 }

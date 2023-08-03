@@ -2,7 +2,9 @@ package com.db.grad.javaapi.model;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.sql.Date;
 import java.sql.Timestamp;
+
 
 @Entity
 @Table(name = "bonds")
@@ -25,7 +27,9 @@ public class Bond {
 
     private String issuerName;
 
-    private Timestamp bondMaturityDate;
+    private String status;
+
+    private Date bondMaturityDate;
 
     public Integer getBondId() {
         return bondId;
@@ -91,11 +95,19 @@ public class Bond {
         this.issuerName = issuerName;
     }
 
-    public Timestamp getBondMaturityDate() {
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public Date getBondMaturityDate() {
         return bondMaturityDate;
     }
 
-    public void setBondMaturityDate(Timestamp bondMaturityDate) {
+    public void setBondMaturityDate(Date bondMaturityDate) {
         this.bondMaturityDate = bondMaturityDate;
     }
 }

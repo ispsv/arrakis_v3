@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 @Service
@@ -19,12 +20,25 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public User getUserById(Integer userId) {
-        if (userRepository.existsById(userId)) {
-            return this.userRepository.getReferenceById(userId);
-        } else {
-            return null;
+    public User addUser(User user) {
+        return userRepository.save(user);
+    }
+
+    public boolean deleteUserById(Integer userId) {
+        boolean deleted = false;
+
+        Optional<User> user = userRepository.findById(userId);
+        if (user.isPresent()) {
+            userRepository.delete(user.get());
+            deleted = true;
         }
+
+        return deleted;
+    }
+
+    public User getUserById(Integer userId) {
+        Optional<User> user = userRepository.findById(userId);
+        return user.orElse(null);
     }
 
     public List<User> getAllUsers() {
@@ -32,8 +46,9 @@ public class UserService {
     }
 
     public Set<Book> getBookForUser(Integer userId) {
-        if (userRepository.existsById(userId)) {
-            return this.userRepository.findBooksByUserId(userId);
+        Optional<User> user = userRepository.findById(userId);
+        if (user.isPresent()) {
+            return userRepository.findBooksByUserId(userId);
         } else {
             return null;
         }
