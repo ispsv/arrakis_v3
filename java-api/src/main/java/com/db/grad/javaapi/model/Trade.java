@@ -23,6 +23,7 @@ public class Trade {
     @JoinColumn(name = "bond_holder_id")
     private BondHolder bondHolder;
 
+    private String isin;
     private String type;
     private String currency;
     private Integer quantity;
@@ -60,6 +61,14 @@ public class Trade {
 
     public void setBondHolder(BondHolder bondHolder) {
         this.bondHolder = bondHolder;
+    }
+
+    public void setIsin(String isin) {
+        this.isin = isin;
+    }
+
+    public String getIsin() {
+        return isin;
     }
 
     public String getType() {
