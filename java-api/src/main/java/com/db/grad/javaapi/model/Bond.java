@@ -3,7 +3,6 @@ package com.db.grad.javaapi.model;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.sql.Date;
-import java.sql.Timestamp;
 
 
 @Entity
@@ -13,6 +12,8 @@ public class Bond {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "bond_id")
     private Integer bondId;
+
+    private String bondHolder;
     private BigDecimal unitPrice;
 
     private BigDecimal couponPercent;
@@ -39,6 +40,14 @@ public class Bond {
 
     public void setBondId(Integer bondId) {
         this.bondId = bondId;
+    }
+
+    public void setBondHolder(String bondHolder) {
+        this.bondHolder = bondHolder;
+    }
+
+    public String getBondHolder() {
+        return bondHolder;
     }
 
     public BigDecimal getUnitPrice() {
