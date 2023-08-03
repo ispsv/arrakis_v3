@@ -38,4 +38,9 @@ public class BondController {
     public Bond createBond(@Valid @RequestBody Bond bond) {
         return bondService.addBond(bond);
     }
+
+    @DeleteMapping("/bonds/{id}")
+    public boolean deleteBond(@PathVariable(value = "id") Integer bondId) {
+        return bondService.deleteBondById(bondId);
+    }
 }
