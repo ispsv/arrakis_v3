@@ -1,7 +1,6 @@
 package com.db.grad.javaapi.controller;
 
 import com.db.grad.javaapi.model.Bond;
-import com.db.grad.javaapi.model.User;
 import com.db.grad.javaapi.model.Trade;
 import com.db.grad.javaapi.service.BondService;
 import org.springframework.beans.factory.annotation.Autowired;

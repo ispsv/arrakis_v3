@@ -1,8 +1,9 @@
 package com.db.grad.javaapi.model;
 
 import javax.persistence.*;
+
+import java.math.BigDecimal;
 import java.sql.Date;
-import java.sql.Timestamp;
 
 @Entity
 @Table(name = "trades")
@@ -22,6 +23,7 @@ public class Trade {
     private String isin;
     private String type;
     private String currency;
+    private BigDecimal unitPrice;
     private Integer quantity;
     private Date settlementDate;
     private String status;
@@ -73,6 +75,14 @@ public class Trade {
 
     public void setCurrency(String currency) {
         this.currency = currency;
+    }
+
+    public void setUnitPrice(BigDecimal unitPrice) {
+        this.unitPrice = unitPrice;
+    }
+
+    public BigDecimal getUnitPrice() {
+        return unitPrice;
     }
 
     public Integer getQuantity() {

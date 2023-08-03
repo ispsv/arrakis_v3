@@ -14,7 +14,6 @@ public class Bond {
     private Integer bondId;
 
     private String bondHolder;
-    private BigDecimal unitPrice;
 
     private BigDecimal couponPercent;
 
@@ -48,14 +47,6 @@ public class Bond {
 
     public String getBondHolder() {
         return bondHolder;
-    }
-
-    public BigDecimal getUnitPrice() {
-        return unitPrice;
-    }
-
-    public void setUnitPrice(BigDecimal unitPrice) {
-        this.unitPrice = unitPrice;
     }
 
     public BigDecimal getCouponPercent() {
