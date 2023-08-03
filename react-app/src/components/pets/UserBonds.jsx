@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
-import { getUserBonds } from '../../services/PetServices';
+import { getUserBonds } from '../../services/BondServices';
 // import styles from "./Pets.module.css";
 import Button from 'react-bootstrap/Button';
 import { ExpandedBondDetail } from './ExpandedBondDetail';
@@ -40,7 +40,7 @@ const UserBonds = () => {
     <Row md={5}>
     {Bonds.map(bond => (
       <Col>
-      <div className='container' key={bond.id.toString()}>
+      <div className='container' key={bond.bondId.toString()}>
         <ExpandedBondDetail info={bond}/>
       </div></Col>
      ))}

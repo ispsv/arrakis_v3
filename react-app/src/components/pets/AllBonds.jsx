@@ -3,7 +3,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import { BondDetail } from "./BondDetail";
-import { getAllBonds } from '../../services/PetServices';
+import { getAllBonds } from '../../services/BondServices';
 import Button from 'react-bootstrap/Button';
 
 const AllBonds = () => {

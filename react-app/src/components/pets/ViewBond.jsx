@@ -1,25 +1,19 @@
 import React, { useState, useEffect } from "react";
-import { findPets } from "../../services/PetServices";
+import { findPets } from "../../services/BondServices";
 import styles from "./Pets.module.css";
 import Table from 'react-bootstrap/Table';
 
-export const Pets = () => {
-    const [pets, setPets] = useState([]);
+export const ViewBond = (props) => {
+    const [ViewBond, setViewBond] = useState([]);
 
     useEffect(() => {
       findPets()
             .then(({data}) => {
-            setPets(data);
+            setViewBond(data);
             });
     }, []);
   return (
     <>
-        { pets.map(pet => 
-        <div className={styles.pets}>
-            {/* <div>ID: {pet.id}</div>
-            <div>Name: {pet.name} </div>
-            <div>Age: {pet.age}</div> */}
-
             <Table className="table-success" >
             <thead>
             <tr>
@@ -29,23 +23,23 @@ export const Pets = () => {
             </thead>
             <tbody>
             <tr>
-              <td>Bond_id</td>
+              <td>BondId</td>
+              <td>{props.BondId}</td>
+            </tr>
+            <tr>
+              <td>BondHolders</td>
+              <td>{props.BondId}</td>
+            </tr>
+            <tr>
+              <td>UnitPrice</td>
+              <td>{props.BondId}</td>
+            </tr>
+            <tr>
+              <td>CouponPercent</td>
               <td>{pet.id}</td>
             </tr>
             <tr>
-              <td>Bond_holder_name</td>
-              <td>{pet.id}</td>
-            </tr>
-            <tr>
-              <td>Unit_price</td>
-              <td>{pet.id}</td>
-            </tr>
-            <tr>
-              <td>Coupon_percent</td>
-              <td>{pet.id}</td>
-            </tr>
-            <tr>
-              <td>Bond_currency</td>
+              <td>BondCurrency</td>
               <td>{pet.id}</td>
             </tr>
             <tr>
@@ -53,7 +47,7 @@ export const Pets = () => {
               <td>{pet.id}</td>
             </tr>
             <tr>
-              <td>Face_value_mn</td>
+              <td>FaceValueMn</td>
               <td>{pet.id}</td>
             </tr>
             <tr>
@@ -61,14 +55,13 @@ export const Pets = () => {
               <td>{pet.id}</td>
             </tr>
             <tr>
-              <td>Bond_maturity_date</td>
+              <td>BondMaturityDate</td>
               <td>{pet.id}</td>
             </tr>
             </tbody>
             </Table>
 
-        </div>) 
-        }
+        {/* // </div> */}
     </>
   )
 };

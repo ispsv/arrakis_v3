@@ -10,6 +10,6 @@ export const getAllBonds = () => {
   return all_bonds;
 };
 export const getUserBonds = () => {
-  const pets = axios.get(`${hostNameUrl}/dogs`);
-  return pets;
+  const user_bonds = axios.get(`${hostNameUrl}/bonds`);
+  return user_bonds;
 };
