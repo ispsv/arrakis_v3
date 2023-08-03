@@ -40,7 +40,7 @@ const AllBonds = () => {
     <Row md={5}>
     {Bonds.map(bond => (
       <Col>
-      <div className='container' key={bond.id.toString()}>
+      <div className='container' key={bond.bondId.toString()}>
         <BondDetail info={bond}/>
       </div></Col>
      ))}
