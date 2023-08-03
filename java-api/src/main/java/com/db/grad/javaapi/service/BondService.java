@@ -1,11 +1,16 @@
 package com.db.grad.javaapi.service;
 
 import com.db.grad.javaapi.model.Bond;
+import com.db.grad.javaapi.model.Trade;
 import com.db.grad.javaapi.repository.BondRepository;
+import com.db.grad.javaapi.repository.TradeRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.Optional;
 
 @Service
@@ -13,6 +18,9 @@ public class BondService {
 
     @Autowired
     BondRepository bondRepository;
+
+    @Autowired
+    TradeRepository tradeRepository;
 
     @Autowired
     public BondService(BondRepository bondRepository) {
@@ -43,4 +51,15 @@ public class BondService {
 
         return deleted;
     }
+
+    public Set<Trade> getTradesByBondId(Integer bondId) {
+        List<Trade> allTrades = tradeRepository.findAll();
+        Set<Trade> tradesForBondId = new HashSet<>();
+        for (Trade t : allTrades) {
+            if(t.getBond().getBondId() == bondId) {
+                tradesForBondId.add(t);
+            }
+        }
+
+        return tradesForBondId;    }
 }
