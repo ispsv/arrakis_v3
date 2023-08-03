@@ -36,7 +36,7 @@ function App() {
       <Routes>
         {/* <Route path="allbonds" element={<Pets />} /> */}
         <Route path="allbonds" element={<AllBonds/>} />
-        <Route path="userbonds" element={<UserBonds/>} />
+        <Route exact path="userbonds" element={<UserBonds/>} />
         <Route path="/bonds/:bondId" element={<ViewBond />} />
         <Route path="/" element={<Welcome />} />
       </Routes>

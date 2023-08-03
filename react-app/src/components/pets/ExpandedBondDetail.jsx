@@ -1,7 +1,7 @@
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import React, {useState, useEffect, Fragment} from 'react';
-import { Link, Route, Routes } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import ViewBond from './ViewBond';
 // import { ViewBond } from "./ViewBond";
 
@@ -15,14 +15,8 @@ export const ExpandedBondDetail = (props) => {
   const active = "active"
   const isDateBeforeCurrentDate = bondMaturityDate < currentDate;
   const isActive = status == active;
-  const [bond_id, setBondId] = useState(null)
   // View bond data collection
-    const viewBondURL = `/bonds/${props.info.bondId}`;
-
-    const sendBondId = () => {
-      const BI = props.info.bondId;
-      setBondId(BI);
-    }
+    const navigate = useNavigate();
 
   return (
     <Fragment>
@@ -45,24 +39,9 @@ export const ExpandedBondDetail = (props) => {
             {props.info.status}
           </span>
         </Card.Text>
-          <Card.Text className="card-text">
-           {/* <div><Button variant="primary" className="btn btn-secondary" onClick={sendBondId}>View</Button>
-            {bond_id && <ViewBond info={bond_id} />} </div> */}
-            
-            <div>
-            <a href={viewBondURL}>
-              <Button
-                variant="primary"
-                className="btn btn-secondary"
-                onClick={sendBondId}
-              >
-                View
-              </Button>
-              </a>
-            </div>
-          
+           <Card.Text className="card-text"><Button variant="primary" onClick={() => {navigate(`/bonds/${props.info.bondId}`)}} className="btn btn-secondary">View</Button></Card.Text>
 
-            </Card.Text>
+      
           
         </Card.Body>
       </Card>

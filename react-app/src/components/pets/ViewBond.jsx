@@ -6,11 +6,8 @@ import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import '../../App.css';
 
-const ViewBond = (props) => {
-  const bondId  = props.info;
-  console.log(props);
-  
-  // const bondId  = 1;
+const ViewBond = () => {
+  const { bondId } = useParams();
   const [bondDetails, setBondDetails] = useState({});
   useEffect(() => {
     // Fetch bond details using bondId
@@ -23,7 +20,6 @@ const ViewBond = (props) => {
       setBondDetails([]);
         console.log(err);
     })
-    // console.log(bondId)
   }, [bondId]);
   return (
     <>
