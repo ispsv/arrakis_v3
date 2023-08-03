@@ -46,23 +46,6 @@ const AllBonds = () => {
      ))}
     </Row></Container>
   </>
-    
-    // { Bonds.map(bond=> 
-    // <>
-    // // <div className={styles.Bonds}>
-    //   <h4> Total count is: <small className="text-body-secondary">{Bonds.length}</small></h4>
-    //   <Container xs={2}>
-    //     <Row >
-    //     <Col>
-    //       <BondDetail/>
-    //     </Col>
-    //   </Row>
-    //   </Container>
-
-    //   // </div> 
-    //   </>
-    //   ) 
-    //   }
    
   )
 }
