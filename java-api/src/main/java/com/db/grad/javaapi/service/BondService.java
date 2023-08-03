@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class BondService {
@@ -18,15 +19,28 @@ public class BondService {
         this.bondRepository = bondRepository;
     }
 
+    public Bond addBond(Bond bond) {
+        return bondRepository.save(bond);
+    }
+
     public Bond getBondById(Integer bondId) {
-        if (bondRepository.existsById(bondId)) {
-            return bondRepository.getReferenceById(bondId);
-        } else {
-            return null;
-        }
+        Optional<Bond> bond = bondRepository.findById(bondId);
+        return bond.orElse(null);
     }
 
     public List<Bond> getAllBonds() {
         return bondRepository.findAll();
+    }
+
+    public boolean deleteBondById(Integer bondId) {
+        boolean deleted = false;
+
+        Optional<Bond> bond = bondRepository.findById(bondId);
+        if (bond.isPresent()) {
+            bondRepository.delete(bond.get());
+            deleted = true;
+        }
+
+        return deleted;
     }
 }

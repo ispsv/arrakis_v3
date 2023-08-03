@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TradeService {
@@ -19,16 +20,29 @@ public class TradeService {
         this.tradeRepository = tradeRepository;
     }
 
+    public Trade addTrade(Trade trade) {
+        return tradeRepository.save(trade);
+    }
+
     public Trade getTradeById(Integer tradeId) {
-        if (this.tradeRepository.existsById(tradeId)) {
-            return this.tradeRepository.getReferenceById(tradeId);
-        } else {
-            return null;
-        }
+        Optional<Trade> trade = tradeRepository.findById(tradeId);
+        return trade.orElse(null);
     }
 
     public List<Trade> getAllTrades() {
         return this.tradeRepository.findAll();
+    }
+
+    public boolean deleteTradeById(Integer tradeId) {
+        boolean deleted = false;
+
+        Optional<Trade> trade = tradeRepository.findById(tradeId);
+        if (trade.isPresent()) {
+            tradeRepository.delete(trade.get());
+            deleted = true;
+        }
+
+        return deleted;
     }
 
 }

@@ -19,10 +19,6 @@ public class Trade {
     @JoinColumn(name = "bond_id") // Foreign key column in the Bond table
     private Bond bond;
 
-    @ManyToOne
-    @JoinColumn(name = "bond_holder_id")
-    private BondHolder bondHolder;
-
     private String isin;
     private String type;
     private String currency;
@@ -53,14 +49,6 @@ public class Trade {
 
     public void setBond(Bond bond) {
         this.bond = bond;
-    }
-
-    public BondHolder getBondHolder() {
-        return bondHolder;
-    }
-
-    public void setBondHolder(BondHolder bondHolder) {
-        this.bondHolder = bondHolder;
     }
 
     public void setIsin(String isin) {
