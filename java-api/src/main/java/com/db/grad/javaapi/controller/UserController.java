@@ -1,7 +1,9 @@
 package com.db.grad.javaapi.controller;
 
 import com.db.grad.javaapi.exception.ResourceNotFoundException;
+import com.db.grad.javaapi.model.Bond;
 import com.db.grad.javaapi.model.Book;
+import com.db.grad.javaapi.model.Trade;
 import com.db.grad.javaapi.model.User;
 import com.db.grad.javaapi.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,15 +34,15 @@ public class UserController {
         return userService.getAllUsers();
     }
 
-    @PostMapping("/users")
-    public User createUser(@Valid @RequestBody User user) {
-        return userService.addUser(user);
-    }
-
     @GetMapping("/users/{id}")
     public ResponseEntity <User> getUser(@PathVariable(value = "id") Integer userId) {
         User user = userService.getUserById(userId);
         return ResponseEntity.ok().body(user);
+    }
+
+    @PostMapping("/users")
+    public User createUser(@Valid @RequestBody User user) {
+        return userService.addUser(user);
     }
 
     @DeleteMapping("/users/{id}")
@@ -51,5 +53,14 @@ public class UserController {
     @GetMapping("/users/{id}/books")
     public Set<Book> getBooksForUser(@PathVariable(value = "id") Integer userId) {
         return userService.getBookForUser(userId);
+    }
+
+    @GetMapping("/users/{id}/trades")
+    public Set<Trade> getTradesForUser(@PathVariable(value = "id") Integer userId) {
+        return userService.getTradesForUser(userId);
+    }
+    @GetMapping("/users/{id}/bonds")
+    public Set<Bond> getBondsForUser(@PathVariable(value = "id") Integer userId) {
+        return userService.getBondsForUser(userId);
     }
 }
