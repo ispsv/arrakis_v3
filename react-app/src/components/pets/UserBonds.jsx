@@ -4,7 +4,6 @@ import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import { getUserBonds } from '../../services/BondServices';
 // import styles from "./Pets.module.css";
-import Button from 'react-bootstrap/Button';
 import { ExpandedBondDetail } from './ExpandedBondDetail';
 import Dropdown from 'react-bootstrap/Dropdown';
 import Form from 'react-bootstrap/Form';
@@ -30,12 +29,19 @@ const UserBonds = (props) => {
         console.log(res.data)
         setBonds(res.data);
         setBondData(res.data);
+        sortBondsByAscendingId(res.data)
     })
     .catch(err => {
         setBonds([]);
         console.log(err);
     })
   }
+
+    const sortBondsByAscendingId = (data) => {
+        const sortedBonds = [...data].sort((a, b) => a.bondId - b.bondId);
+        setBonds(sortedBonds);
+        setSortOrder('asc_id');
+    }
 
     const handleSortClick = (order) => {
 
