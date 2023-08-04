@@ -18,7 +18,7 @@ const ViewBond = () => {
   const open = "open"
   const isDateBeforeCurrentDate = bondMaturityDate < currentDate;
   const isActive = status == active;
-  const isOpen = statusTrade == open;
+  const isOpen = statusTrade != open;
   useEffect(() => {
     // Fetch bond details using bondId
     getBondDetails(bondId)
@@ -81,7 +81,7 @@ const ViewBond = () => {
                 <td>{bondDetails.currency}</td>
                 <td>{bondDetails.couponPercent}</td>
                 <td>
-                  <span className={isActive ? "text-success" : "text-danger"}>
+                  <span className={isActive && isDateBeforeCurrentDate ? "text-danger" : "text-success"}>
                   <strong>{bondDetails.status}</strong>
                   </span>
                   </td>
@@ -117,7 +117,7 @@ const ViewBond = () => {
       <td>{trade.book.bookName || "-"}</td>
       <td>{trade.bond.bondHolder || "-"}</td>
       <td>
-        <span className={isOpen ? "text-danger" : "text-success"}>
+        <span className={isOpen && isDateBeforeCurrentDate ? "text-danger" : "text-success"}>
           <strong>{trade.status || "-"}</strong>
         </span>
       </td>
