@@ -10,17 +10,26 @@ import Form from 'react-bootstrap/Form';
 
 const AllBonds = () => {
     const [bonds, setBonds] = useState([]);
+    const [bondData, setBondData] = useState([]);
     const [sortOrder, setSortOrder] = useState('asc_id');
+    const [showPrev, setShowPrev] = useState(false);
+    const [showNext, setShowNext] = useState(false);
 
     useEffect(() => {
         getBondsFromAPI();
     }, []);
+
+    useEffect(() => {
+        filterBonds();
+    }, [showPrev, showNext]);
+
 
     const getBondsFromAPI = () => {
         getAllBonds()
             .then(res => {
                 console.log(res.data)
                 setBonds(res.data);
+                setBondData(res.data);
             })
             .catch(err => {
                 setBonds([]);
@@ -28,7 +37,10 @@ const AllBonds = () => {
             })
     }
 
+
+
     const handleSortClick = (order) => {
+
         const sortedBonds = [...bonds].sort((a, b) => {
             if (order === 'asc_id') {
                 return a.bondId - b.bondId;
@@ -45,6 +57,44 @@ const AllBonds = () => {
 
         setBonds(sortedBonds);
         setSortOrder(order);
+    }
+
+    const handleShowPrev = (event) => {
+        setShowPrev(event.target.checked);
+        filterBonds()
+    }
+
+    const handleShowNext = (event) => {
+        setShowNext(event.target.checked);
+        filterBonds()
+    }
+
+    const filterBonds = () => {
+
+
+        const filteredBonds = bondData.filter((bond) => {
+            const dateOffset = (24*60*60*1000) * 5;
+            const currentDate = new Date();
+            const prev5Date = new Date(currentDate - dateOffset);
+            const next5Date = new Date(currentDate + dateOffset)
+
+            const bondDate = new Date(bond.bondMaturityDate);
+
+            const isPrev = bondDate > prev5Date && bondDate < currentDate;
+            const isNext = bondDate < next5Date && bondDate > currentDate;
+
+            if (showPrev && showNext) {
+                return isPrev || isNext;
+            } else if (showPrev) {
+                return isPrev;
+            } else if (showNext) {
+                return isNext;
+            } else {
+                return true;
+            }
+        });
+
+        setBonds(filteredBonds);
     }
 
 
@@ -81,15 +131,15 @@ const AllBonds = () => {
                     <Form.Check
                         type="checkbox"
                         label="Previous 5 Days"
-                        // checked={show_prev}
-                        // onChange={handleShowPrev}
+                        checked={showPrev}
+                        onChange={handleShowPrev}
                         style={{ marginLeft: "10px" }}
                     />
                     <Form.Check
                         type="checkbox"
                         label="Next 5 Days"
-                        // checked={show_next}
-                        // onChange={handleShowNext}
+                        checked={showNext}
+                        onChange={handleShowNext}
                         style={{ marginLeft: "10px" }}
                     />
                 </div>
