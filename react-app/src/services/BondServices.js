@@ -19,8 +19,17 @@ export const getBondDetails = (id) => {
     console.log(selected_bond);
     return selected_bond;
 }
+// export const getTradesDetails = (id) => {
+//   const all_trades_for_selected_bond  = axios.get(`${hostNameUrl}/bonds/${id}/trades`);
+//   // console.log(all_trades_for_selected_bond);
+//   return all_trades_for_selected_bond;
+// }
 export const getTradesDetails = (id) => {
-  const all_trades_for_selected_bond  = axios.get(`${hostNameUrl}/bonds/${id}/trades`);
-  // console.log(all_trades_for_selected_bond);
-  return all_trades_for_selected_bond;
-}
+  return axios.get(`${hostNameUrl}/bonds/${id}/trades`)
+    .then(res => res.data)
+    .catch(error => {
+      console.log("Error fetching trade details:", error);
+      return [];
+    });
+    
+};

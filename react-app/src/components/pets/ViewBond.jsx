@@ -9,7 +9,7 @@ import '../../App.css';
 const ViewBond = () => {
   const { bondId } = useParams();
   const [bondDetails, setBondDetails] = useState({});
-  const [tradeDetails, setTradesDetails] = useState({});
+  const [tradesDetails, setTradesDetails] = useState({});
   useEffect(() => {
     // Fetch bond details using bondId
     getBondDetails(bondId)
@@ -20,12 +20,13 @@ const ViewBond = () => {
     .catch(err => {
       setBondDetails([]);
         console.log(err);
-    })
+    });
     // Fetch trade details using bondId
     getTradesDetails(bondId)
-    .then(res => {
-      console.log(res.data)
-      setTradesDetails(res.data);
+    .then(res2 => {
+      console.log(res2.data)
+      // console.log(res2.data.type)
+      setTradesDetails(res2.data);
     })
     .catch(err => {
       setTradesDetails([]);
@@ -73,42 +74,43 @@ const ViewBond = () => {
           <h5 style={{marginLeft: "4.5%", marginTop: "2%"}}>Trades for Bond {bondDetails.bondId}</h5>
         </div>
       </div>
-        <Container fluid="md-4" style={{marginLeft: "4%", marginTop: "2%", width: "93%"}} >
-            <Table className="table-light" >
-            <thead>
-              <tr>
-              <th>Trade Id</th>
-                <th>ISIN</th>
-                <th>Book Id</th>
-                <th>Client</th>
-                <th>Status</th>
-                <th>Quantity</th>
-                <th>Unit Price</th>
-                <th>Currency</th>
-                <th>Buy/Sell</th>
-                <th>Trade Date</th>
-                <th>Settlement Date</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>{tradeDetails.isin}</td>
-                <td>{tradeDetails.isin}</td>
-                <td>{tradeDetails[0].bookId}</td>
-                <td>{bondDetails.bondId}</td>
-                <td>{tradeDetails.status}</td>
-                <td>{tradeDetails.quantity}</td>
-                <td>{tradeDetails.bondId}</td>
-                <td>{tradeDetails.bondId}</td>
-                <td>{tradeDetails.bondId}</td>
-                <td>{tradeDetails.bondId}</td>
-              </tr>
-            </tbody>
-            </Table>
-            </Container>
-
-        
-
+    <Container fluid="md-4" style={{marginLeft: "4%", marginTop: "2%", width: "93%"}} >
+      <Table className="table-light" >
+      <thead>
+        <tr>
+        <th>Trade Id</th>
+          <th>ISIN</th>
+          <th>Book Id</th>
+          <th>Client</th>
+          <th>Status</th>
+          <th>Quantity</th>
+          <th>Unit Price</th>
+          <th>Currency</th>
+          <th>Buy/Sell</th>
+          <th>Trade Date</th>
+          <th>Settlement Date</th>
+        </tr>
+      </thead>
+      <tbody>
+      {[tradesDetails].map((trade, index) => (
+    <tr key={index}>
+      <td>{[trade].tradeId || "-"}</td>
+      {/* <td>{trade.bond.isin || "-"}</td> */}
+      {/* <td>{trade.book.bookId || "-"}</td> */}
+      {/* <td>{trade.bond.bondHolder || "-"}</td> */}
+      <td>{trade.status || "-"}</td>
+      <td>{trade.quantity || "-"}</td>
+      {/* <td>{trade.bond.unitPrice || "-"}</td> */}
+      <td>{trade.currency}</td>
+      <td>{trade.type || "-"}</td>
+      <td>{trade.date || "-"}</td>
+      <td>{trade.settlementDate || "-"}</td>
+    </tr>
+  ))}
+      </tbody>
+      </Table>
+      </Container>
+    
     </>
   )
 };
