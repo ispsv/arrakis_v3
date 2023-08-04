@@ -5,6 +5,8 @@ import Container from 'react-bootstrap/Container';
 import { BondDetail } from "./BondDetail";
 import { getAllBonds } from '../../services/BondServices';
 import Dropdown from 'react-bootstrap/Dropdown';
+import Form from 'react-bootstrap/Form';
+
 
 const AllBonds = () => {
     const [bonds, setBonds] = useState([]);
@@ -46,6 +48,9 @@ const AllBonds = () => {
     }
 
 
+
+
+
     return (
         <>
             <div className="list-group text-center">
@@ -73,6 +78,20 @@ const AllBonds = () => {
 
                         </Dropdown.Menu>
                     </Dropdown>
+                    <Form.Check
+                        type="checkbox"
+                        label="Previous 5 Days"
+                        // checked={show_prev}
+                        // onChange={handleShowPrev}
+                        style={{ marginLeft: "10px" }}
+                    />
+                    <Form.Check
+                        type="checkbox"
+                        label="Next 5 Days"
+                        // checked={show_next}
+                        // onChange={handleShowNext}
+                        style={{ marginLeft: "10px" }}
+                    />
                 </div>
             </div>
             <h4 style={{ marginLeft: "4.5%", marginTop: "2%", marginBottom: "1%" }}> Total count is: <small className="text-body-secondary">{bonds.length}</small></h4>
