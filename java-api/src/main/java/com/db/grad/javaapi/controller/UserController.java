@@ -11,9 +11,8 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 @RestController
 @RequestMapping("/api/v1")
@@ -26,6 +25,19 @@ public class UserController {
     @Autowired
     UserController(UserService userService) {
         this.userService = userService;
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<User> loginUser(@Valid @RequestBody User user) {
+        List<User> allUsers = userService.getAllUsers();
+        for(User u : allUsers) {
+            if (Objects.equals(u.getUserName(), user.getUserName()) &&
+                Objects.equals(u.getPassword(), user.getPassword())) {
+                return ResponseEntity.ok().body(u);
+            }
+        }
+
+        return ResponseEntity.notFound().build();
     }
 
     @GetMapping("/users")

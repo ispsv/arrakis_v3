@@ -2,6 +2,7 @@ package com.db.grad.javaapi.model;
 
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -47,5 +48,18 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        User otherUser = (User) obj;
+        return Objects.equals(userName, otherUser.getUserName()) &&
+                Objects.equals(password, otherUser.getPassword());
     }
 }
