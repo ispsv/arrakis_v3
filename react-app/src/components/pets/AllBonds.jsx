@@ -106,21 +106,23 @@ const AllBonds = () => {
             <div className="list-group text-center">
                 <div className="d-flex justify-content-between subnav">
                     <h5 style={{ marginLeft: "4.5%", marginTop: "1%" }}>All Active Bonds</h5>
+                    <span style={{ marginLeft: "45%", textAlign: "left"}}>
+                    
                     <Form.Check
                         type="checkbox"
-                        label="Previous 5 Days"
+                        label="Matured in Previous 5 Days"
                         checked={showPrev}
                         onChange={handleShowPrev}
-                        style={{ marginLeft: "10px" }}
+                        style={{ marginLeft: "10px", marginTop: "1%" }}
                     />
                     <Form.Check
                         type="checkbox"
-                        label="Next 5 Days"
+                        label="Matures in Next 5 Days"
                         checked={showNext}
                         onChange={handleShowNext}
-                        style={{ marginLeft: "10px" }}
-                    />
-                    <Dropdown>
+                        style={{ marginLeft: "10px", marginTop: "1%" }}
+                    /></span>
+                    <Dropdown style={ {marginTop: "0.5%"} }>
                         <Dropdown.Toggle variant="primary" className="btn btn-secondary" id="sort">
                             Sort: {sortOrder === 'asc_id'
                             ? 'Ascending ID'
