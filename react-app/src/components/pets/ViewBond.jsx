@@ -10,6 +10,15 @@ const ViewBond = () => {
   const { bondId } = useParams();
   const [bondDetails, setBondDetails] = useState({});
   const [tradesDetails, setTradesDetails] = useState([]);
+  const bondMaturityDate = new Date(bondDetails.bondMaturityDate);
+  const status = new String(bondDetails.status);
+  const statusTrade = new String(tradesDetails.status);
+  const currentDate = new Date();
+  const active = "active"
+  const open = "open"
+  const isDateBeforeCurrentDate = bondMaturityDate < currentDate;
+  const isActive = status == active;
+  const isOpen = statusTrade == open;
   useEffect(() => {
     // Fetch bond details using bondId
     getBondDetails(bondId)
@@ -38,12 +47,12 @@ const ViewBond = () => {
     <>
     <div className="list-group text-center">
         <div className="d-flex justify-content-between subnav">
-          <h5 style={{marginLeft: "4.5%", marginTop: "1%"}}>Bond: {bondDetails.bondId}</h5>
+          <h5 style={{marginLeft: "4.5%", marginTop: "1%"}}>Bond {bondDetails.bondId} Details:</h5>
           
         </div>
       </div>
       <Container fluid="md-4" style={{marginLeft: "4%", marginTop: "2%", width: "93%"}}>
-          <Table className="table-light" >
+          <Table className="table-light table table-hover" >
             <thead>
               <tr>
                 <th>ISIN</th>
@@ -59,26 +68,34 @@ const ViewBond = () => {
             </thead>
             <tbody>
               <tr>
-                <td>{bondDetails.isin}</td>
+                <td><strong>{bondDetails.isin}</strong></td>
                 <td>{bondDetails.cusip}</td>
                 <td>{bondDetails.type}</td>
                 <td>{bondDetails.issuerName}</td>
-                <td>{bondDetails.bondMaturityDate}</td>
+                <td>
+                  <span className={isDateBeforeCurrentDate ? "text-danger" : "text-success"}>
+                  <strong>{bondDetails.bondMaturityDate}</strong>
+                  </span>
+                  </td>
                 <td>{bondDetails.faceValueMn}</td>
                 <td>{bondDetails.currency}</td>
                 <td>{bondDetails.couponPercent}</td>
-                <td>{bondDetails.status}</td>
+                <td>
+                  <span className={isActive ? "text-success" : "text-danger"}>
+                  <strong>{bondDetails.status}</strong>
+                  </span>
+                  </td>
               </tr>
             </tbody>
           </Table>
         </Container>
         <div className="list-group text-center">
         <div className="d-flex justify-content-between subnav">
-          <h5 style={{marginLeft: "4.5%", marginTop: "2%"}}>Trades for Bond {bondDetails.bondId}</h5>
+          <h5 style={{marginLeft: "4.5%", marginTop: "2%"}}>Trade(s) for Bond {bondDetails.bondId}:</h5>
         </div>
       </div>
     <Container fluid="md-4" style={{marginLeft: "4%", marginTop: "2%", width: "93%"}} >
-      <Table className="table-light" >
+      <Table className="table-light table table-hover" >
       <thead>
         <tr>
         <th>Trade Id</th>
@@ -99,7 +116,11 @@ const ViewBond = () => {
       <td>{trade.tradeId || "-"}</td>
       <td>{trade.book.bookName || "-"}</td>
       <td>{trade.bond.bondHolder || "-"}</td>
-      <td>{trade.status || "-"}</td>
+      <td>
+        <span className={isOpen ? "text-danger" : "text-success"}>
+          <strong>{trade.status || "-"}</strong>
+        </span>
+      </td>
       <td>{trade.quantity || "-"}</td>
       <td>{trade.bond.unitPrice || "-"}</td>
       <td>{trade.currency || "-"}</td>
