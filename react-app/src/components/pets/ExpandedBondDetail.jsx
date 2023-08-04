@@ -25,10 +25,15 @@ export const ExpandedBondDetail = (props) => {
           <div>Bond ID: {props.info.bondId}</div>
           </Card.Title>
           <Card.Body className="card-body">
-          <Card.Text className="card-text"> Bond Holder Name: {props.info.bondHolderName}</Card.Text>
+          <Card.Text className="card-text">
+          <span>Bond Holder Name: </span><br></br>
+          <span ><strong> 
+          {props.info.bondHolder}</strong>
+          </span>
+            </Card.Text>
           <Card.Text className="card-text">
           <span>Bond Maturity Date: </span>
-          <span className={isDateBeforeCurrentDate ? "text-danger" : ""}>
+          <span className={isDateBeforeCurrentDate ? "text-danger" : "text-success"}>
             {props.info.bondMaturityDate}
           </span>
         </Card.Text>

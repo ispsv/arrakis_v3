@@ -9,7 +9,7 @@ import '../../App.css';
 const ViewBond = () => {
   const { bondId } = useParams();
   const [bondDetails, setBondDetails] = useState({});
-  const [tradesDetails, setTradesDetails] = useState({});
+  const [tradesDetails, setTradesDetails] = useState([]);
   useEffect(() => {
     // Fetch bond details using bondId
     getBondDetails(bondId)
@@ -24,14 +24,15 @@ const ViewBond = () => {
     // Fetch trade details using bondId
     getTradesDetails(bondId)
     .then(res2 => {
-      console.log(res2.data)
-      // console.log(res2.data.type)
+      console.log(bondId);
+      console.log(res2.data);
       setTradesDetails(res2.data);
     })
     .catch(err => {
       setTradesDetails([]);
         console.log(err);
     })
+    
   }, [bondId]);
   return (
     <>
@@ -46,6 +47,7 @@ const ViewBond = () => {
             <thead>
               <tr>
                 <th>ISIN</th>
+                <th>CUSIP</th>
                 <th>Type</th>
                 <th>Issuer</th>
                 <th>Maturity</th>
@@ -58,6 +60,7 @@ const ViewBond = () => {
             <tbody>
               <tr>
                 <td>{bondDetails.isin}</td>
+                <td>{bondDetails.cusip}</td>
                 <td>{bondDetails.type}</td>
                 <td>{bondDetails.issuerName}</td>
                 <td>{bondDetails.bondMaturityDate}</td>
@@ -79,7 +82,6 @@ const ViewBond = () => {
       <thead>
         <tr>
         <th>Trade Id</th>
-          <th>ISIN</th>
           <th>Book Id</th>
           <th>Client</th>
           <th>Status</th>
@@ -92,16 +94,15 @@ const ViewBond = () => {
         </tr>
       </thead>
       <tbody>
-      {[tradesDetails].map((trade, index) => (
+      {tradesDetails.map((trade, index) => (
     <tr key={index}>
-      <td>{[trade].tradeId || "-"}</td>
-      {/* <td>{trade.bond.isin || "-"}</td> */}
-      {/* <td>{trade.book.bookId || "-"}</td> */}
-      {/* <td>{trade.bond.bondHolder || "-"}</td> */}
+      <td>{trade.tradeId || "-"}</td>
+      <td>{trade.book.bookId || "-"}</td>
+      <td>{trade.bond.bondHolder || "-"}</td>
       <td>{trade.status || "-"}</td>
       <td>{trade.quantity || "-"}</td>
-      {/* <td>{trade.bond.unitPrice || "-"}</td> */}
-      <td>{trade.currency}</td>
+      <td>{trade.bond.unitPrice || "-"}</td>
+      <td>{trade.currency || "-"}</td>
       <td>{trade.type || "-"}</td>
       <td>{trade.date || "-"}</td>
       <td>{trade.settlementDate || "-"}</td>
