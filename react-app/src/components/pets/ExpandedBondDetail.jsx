@@ -33,14 +33,14 @@ export const ExpandedBondDetail = (props) => {
             </Card.Text>
           <Card.Text className="card-text">
           <span>Bond Maturity Date: </span>
-          <span className={isDateBeforeCurrentDate ? "text-danger" : ""}>
+          <span className={isDateBeforeCurrentDate ? "text-danger" : "text-success"}>
             {props.info.bondMaturityDate}
           </span>
         </Card.Text>
           <Card.Text className="card-text"> Bond Type: {props.info.type}</Card.Text>
           <Card.Text className="card-text">
         <span>Status: </span>
-          <span className={isActive ? "text-success" : "text-success"}>
+          <span className={isActive ? "text-success" : ""}>
             {props.info.status}
           </span>
         </Card.Text>
