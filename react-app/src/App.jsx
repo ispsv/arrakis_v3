@@ -2,7 +2,7 @@ import React from "react";
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useNavigate } from 'react-router-dom';
 import { useState } from "react";
 import Button from 'react-bootstrap/Button';
 import './App.css';
@@ -19,7 +19,9 @@ function App() {
   const isLoggedIn = (bool) => {
     setUserLoggedIn(bool);
   }
-  
+
+  const navigate = useNavigate();
+
   return (
   <>
   <Navbar expand="lg" className="navbar navbar-expand-lg " data-bs-theme="dark" style={{backgroundColor: "#0018a8"}}>
@@ -34,7 +36,13 @@ function App() {
              
               {userLoggedIn && <Nav.Link href="/userbonds" className="nav-link nav-item text-center">Your Bonds</Nav.Link>}
               {/* <Nav.Link href="/bonds" className="nav-link nav-item text-center">View Bond</Nav.Link> */}
-              <Button variant="primary" className="btn btn-primary-disabled " id="logout " style={{float: "right"}}>Logout</Button>
+              <Button variant="primary"
+                      className="btn btn-primary-disabled"
+                      id="logout "
+                      style={{float: "right"}}
+                      onClick={() => {setUserLoggedIn(false); navigate('/')}}>
+                Logout
+              </Button>
             </Nav>
           </Navbar.Collapse>
         </Container>

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthService } from '../../services/AuthService';
-import { hostNameUrl, shortHostUrl } from '../../config/api';
 
 const AuthenticationComponent = (props) => {
   const [username, setUsername] = useState('');
