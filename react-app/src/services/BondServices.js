@@ -9,8 +9,8 @@ export const getAllBonds = () => {
   const all_bonds = axios.get(`${hostNameUrl}/bonds`);
   return all_bonds;
 };
-export const getUserBonds = () => {
-  const user_bonds = axios.get(`${hostNameUrl}/bonds`);
+export const getUserBonds = (userId) => {
+  const user_bonds = axios.get(`${hostNameUrl}/users/${userId}/bonds`);
   return user_bonds;
 };
 // Function to fetch bond details based on bondId

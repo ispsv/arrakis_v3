@@ -18,6 +18,7 @@ const AuthenticationComponent = (props) => {
       setUser(user);
       setError('');
       props.logIn(true);
+      props.setNewUser(user);
       navigate('/allbonds');
     } catch (err) {
       setError(err.message);

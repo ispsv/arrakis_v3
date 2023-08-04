@@ -9,7 +9,7 @@ import { ExpandedBondDetail } from './ExpandedBondDetail';
 import Dropdown from 'react-bootstrap/Dropdown';
 import Form from 'react-bootstrap/Form';
 
-const UserBonds = () => {
+const UserBonds = (props) => {
   const [bonds, setBonds] = useState([]);
   const [bondData, setBondData] = useState([]);
   const [sortOrder, setSortOrder] = useState('asc_id');
@@ -25,7 +25,7 @@ const UserBonds = () => {
   }, [showPrev, showNext]);
   
   const getBondsFromAPI = ()=>{
-    getUserBonds()
+    getUserBonds(props.user.userId)
     .then(res => {
         console.log(res.data)
         setBonds(res.data);

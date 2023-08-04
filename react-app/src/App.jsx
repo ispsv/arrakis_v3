@@ -15,12 +15,15 @@ import AuthenticationComponent from "./components/pets/AuthenticationComponent";
 // const App = () => {
 function App() {
   const [userLoggedIn, setUserLoggedIn] = useState(false);
+  const [user, setUser] = useState(null);
 
   // Load the userLoggedIn state from sessionStorage on the initial render
   useEffect(() => {
     const storedUserLoggedIn = sessionStorage.getItem("userLoggedIn");
+    const loggedInUser = sessionStorage.getItem("user");
     if (storedUserLoggedIn !== null) {
       setUserLoggedIn(JSON.parse(storedUserLoggedIn));
+      setUser(JSON.parse(loggedInUser));
     }
   }, []);
 
@@ -28,6 +31,11 @@ function App() {
   const isLoggedIn = (bool) => {
     setUserLoggedIn(bool);
     sessionStorage.setItem("userLoggedIn", JSON.stringify(bool));
+  }
+
+  const setNewUser = (user) => {
+    setUser(user);
+    sessionStorage.setItem("user", JSON.stringify(user));
   }
 
   const navigate = useNavigate();
@@ -62,10 +70,10 @@ function App() {
       <Routes>
         {/* <Route path="allbonds" element={<Pets />} /> */}
         <Route path="allbonds" element={<AllBonds/>} />
-        <Route exact path="userbonds" element={<UserBonds/>} />
+        {userLoggedIn && <Route exact path="userbonds" element={<UserBonds user={user}/>} />}
         <Route path="/bonds/:bondId" element={<ViewBond />} />
         <Route path="welcome" element={<Welcome />} />
-        <Route path="/" element={<AuthenticationComponent logIn={isLoggedIn}/>} />
+        <Route path="/" element={<AuthenticationComponent logIn={isLoggedIn} setNewUser={setNewUser}/>} />
       </Routes>
 
       
