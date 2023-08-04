@@ -77,8 +77,9 @@ const AuthenticationComponent = (props) => {
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
-          <button type="submit" class="btn btn-primary" style={{ marginLeft: "35%", marginTop: "5%", textAlign: "center"}}>Login</button>
-          {error && <p>{error}</p>}
+          <button type="submit" class="btn btn-primary" style={{ marginLeft: "35%", marginTop: "5%", textAlign: "center", marginBottom: "2%"}}>Login</button>
+          <span style={{ marginLeft: "35%", marginTop: "6%", textAlign: "center"}}>
+          {error && <p>{error}</p>}</span>
         </form>
       )}
     </div></div>

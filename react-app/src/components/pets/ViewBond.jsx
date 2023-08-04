@@ -82,7 +82,7 @@ const ViewBond = () => {
       <thead>
         <tr>
         <th>Trade Id</th>
-          <th>Book Id</th>
+          <th>Book Name</th>
           <th>Client</th>
           <th>Status</th>
           <th>Quantity</th>
@@ -97,7 +97,7 @@ const ViewBond = () => {
       {tradesDetails.map((trade, index) => (
     <tr key={index}>
       <td>{trade.tradeId || "-"}</td>
-      <td>{trade.book.bookId || "-"}</td>
+      <td>{trade.book.bookName || "-"}</td>
       <td>{trade.bond.bondHolder || "-"}</td>
       <td>{trade.status || "-"}</td>
       <td>{trade.quantity || "-"}</td>

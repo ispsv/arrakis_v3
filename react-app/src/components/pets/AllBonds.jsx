@@ -17,6 +17,7 @@ const AllBonds = () => {
 
     useEffect(() => {
         getBondsFromAPI();
+        // handleSortClick('asc_id');
     }, []);
 
     useEffect(() => {
