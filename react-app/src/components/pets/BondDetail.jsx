@@ -19,7 +19,7 @@ export const BondDetail = (props) => {
           <Card.Body className="card-body">
           <Card.Text className="card-text">
           <span>Bond Maturity Date: </span>
-          <span className={isDateBeforeCurrentDate ? "text-danger" : ""}>
+          <span className={isDateBeforeCurrentDate ? "text-danger" : "text-success"}>
             {props.info.bondMaturityDate}
           </span>
         </Card.Text>
