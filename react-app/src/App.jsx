@@ -3,7 +3,7 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { Route, Routes, useNavigate } from 'react-router-dom';
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Button from 'react-bootstrap/Button';
 import './App.css';
 import AllBonds from "./components/pets/AllBonds";
@@ -16,8 +16,18 @@ import AuthenticationComponent from "./components/pets/AuthenticationComponent";
 function App() {
   const [userLoggedIn, setUserLoggedIn] = useState(false);
 
+  // Load the userLoggedIn state from sessionStorage on the initial render
+  useEffect(() => {
+    const storedUserLoggedIn = sessionStorage.getItem("userLoggedIn");
+    if (storedUserLoggedIn !== null) {
+      setUserLoggedIn(JSON.parse(storedUserLoggedIn));
+    }
+  }, []);
+
+  // Update the userLoggedIn state and save it to sessionStorage
   const isLoggedIn = (bool) => {
     setUserLoggedIn(bool);
+    sessionStorage.setItem("userLoggedIn", JSON.stringify(bool));
   }
 
   const navigate = useNavigate();
