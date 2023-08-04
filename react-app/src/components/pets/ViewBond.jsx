@@ -47,6 +47,7 @@ const ViewBond = () => {
             <thead>
               <tr>
                 <th>ISIN</th>
+                <th>CUSIP</th>
                 <th>Type</th>
                 <th>Issuer</th>
                 <th>Maturity</th>
@@ -59,6 +60,7 @@ const ViewBond = () => {
             <tbody>
               <tr>
                 <td>{bondDetails.isin}</td>
+                <td>{bondDetails.cusip}</td>
                 <td>{bondDetails.type}</td>
                 <td>{bondDetails.issuerName}</td>
                 <td>{bondDetails.bondMaturityDate}</td>
