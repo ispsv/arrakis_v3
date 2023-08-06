@@ -34,4 +34,12 @@ public class Book {
     public void setBookName(String bookName) {
         this.bookName = bookName;
     }
+
+    public Set<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(Set<User> users) {
+        this.users = users;
+    }
 }

@@ -21,8 +21,9 @@ public class UserService {
    private TradeRepository tradeRepository;
 
     @Autowired
-    public UserService(UserRepository userRepository) {
+    public UserService(UserRepository userRepository, TradeRepository tradeRepository) {
         this.userRepository = userRepository;
+        this.tradeRepository = tradeRepository;
     }
 
     public User addUser(User user) {

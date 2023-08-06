@@ -8,10 +8,7 @@ import com.db.grad.javaapi.repository.TradeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class BondService {
@@ -23,8 +20,9 @@ public class BondService {
     TradeRepository tradeRepository;
 
     @Autowired
-    public BondService(BondRepository bondRepository) {
+    public BondService(BondRepository bondRepository, TradeRepository tradeRepository) {
         this.bondRepository = bondRepository;
+        this.tradeRepository = tradeRepository;
     }
 
     public Bond addBond(Bond bond) {
@@ -56,10 +54,11 @@ public class BondService {
         List<Trade> allTrades = tradeRepository.findAll();
         Set<Trade> tradesForBondId = new HashSet<>();
         for (Trade t : allTrades) {
-            if(t.getBond().getBondId() == bondId) {
+            if(Objects.equals(t.getBond().getBondId(), bondId)) {
                 tradesForBondId.add(t);
             }
         }
 
-        return tradesForBondId;    }
+        return tradesForBondId;
+    }
 }
