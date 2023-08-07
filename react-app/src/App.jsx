@@ -74,7 +74,6 @@ function App() {
       {userLoggedIn ? authLinks : guestLinks}
       
       <Routes>
-        {/* <Route path="allbonds" element={<Pets />} /> */}
         <Route path="allbonds" element={<AllBonds />} />
         {userLoggedIn && <Route exact path="userbonds" element={<UserBonds user={user} />} />}
         <Route path="/bonds/:bondId" element={<ViewBond />} />
