@@ -197,7 +197,7 @@ const AllBonds = () => {
             </div>
 
             <h4 style={{ marginLeft: "4.5%", marginTop: "2%", marginBottom: "1%" }}> Total count is: <small className="text-body-secondary">{bonds.length}</small></h4>
-            <Container fluid style={{ marginLeft: "4%", marginTop: "2%", marginBottom: "2%" }} >
+            <Container fluid style={{ marginLeft: "0.5%", marginTop: "2%", marginBottom: "2%", marginRight: "2%" }} >
                 <Row>
                     {bonds.map(bond => (
                         <Col md={6} lg={4} xl={3} key={bond.bondId.toString()} style={{ marginBottom: "20px" }}>

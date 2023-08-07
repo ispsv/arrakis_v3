@@ -145,7 +145,7 @@ const UserBonds = (props) => {
       </div>
     <h4 style={{marginLeft: "4.5%", marginTop:"2%", marginBottom: "1%"}}> Total count is: <small className="text-body-secondary">{bonds.length}</small></h4>
 
-    <Container fluid="md-4" style={{marginLeft: "4%", marginTop: "2%", width: "95%"}} >
+    <Container fluid="md-4" style={{marginLeft: "3%", marginTop: "2%", width: "95%", marginRight: "2%"}} >
     <Row md={5}>
     {bonds.map(bond => (
       <Col>
