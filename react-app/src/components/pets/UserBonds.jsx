@@ -3,7 +3,6 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import { getUserBonds } from '../../services/BondServices';
-// import styles from "./Pets.module.css";
 import { ExpandedBondDetail } from './ExpandedBondDetail';
 import Dropdown from 'react-bootstrap/Dropdown';
 import Form from 'react-bootstrap/Form';
