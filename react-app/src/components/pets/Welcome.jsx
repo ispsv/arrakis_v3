@@ -7,7 +7,7 @@ export const Welcome = (props) => {
   return (
     <div>
       {/* <h1>Welcome {props.name}</h1> */}
-      <h1 class="text-center">Welcome User</h1>
+      <h1 class="text-center" style={{ marginTop: "5%"}}>Welcome User</h1>
       <figure class="text-center">
         <blockquote class="blockquote">
           <p class="mb-0">This is a Bond Tracker where you can view details of active bonds in all tradebooks and edit your trade(s).</p>

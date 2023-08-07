@@ -161,7 +161,8 @@ const UserBonds = (props) => {
         <>
             <div className="list-group text-center">
                 <div className="d-flex justify-content-between subnav">
-                    <h5 style={{ marginLeft: "4.5%", marginTop: "1%", marginBottom: "1%" }}>All Active Bonds</h5>
+                    <h5 style={{ marginLeft: "4.5%", marginTop: "2%", marginBottom: "1%" }}>Your Active Bonds</h5>
+                    <span style={{ marginLeft: "20%", textAlign: "left", marginTop: "1.25%" }}>
 
                     <div className="d-flex align-items-center"> {/* Flex container */}
                         <Form.Control
@@ -172,10 +173,10 @@ const UserBonds = (props) => {
                         />
                         <Button variant="primary" onClick={handleDateSubmit} style={{ marginRight: "10px" }}>Change Date</Button>
                         <Button variant="secondary" onClick={handleReset}>Reset</Button>
-                    </div>
+                    </div></span>
 
 
-                    <span style={{ marginLeft: "4%", textAlign: "left", marginTop: "1%" }}>
+                    <span style={{ marginLeft: "4%", textAlign: "left", marginTop: "0.05%" }}>
         <Form.Check
             type="checkbox"
             label="Matured in Previous 5 Days"
@@ -199,7 +200,7 @@ const UserBonds = (props) => {
         />
       </span>
 
-                    <Dropdown style={{ marginTop: "1%", marginRight: "10px" }}>
+                    <Dropdown style={{ marginTop: "1%", marginRight: "0%" }}>
                         <Dropdown.Toggle variant="primary" className="btn btn-secondary" id="sort">
                             Sort: {sortOrder === 'asc_id'
                             ? 'Ascending ID'
@@ -229,7 +230,7 @@ const UserBonds = (props) => {
             </div>
 
             <h4 style={{ marginLeft: "4.5%", marginTop: "2%", marginBottom: "1%" }}> Total count is: <small className="text-body-secondary">{bonds.length}</small></h4>
-            <Container fluid style={{ marginLeft: "4%", marginTop: "2%", marginBottom: "2%" }} >
+            <Container fluid style={{marginLeft: "3%", marginTop: "2%", width: "95%", marginRight: "2%"}} >
                 <Row>
                     {bonds.map(bond => (
                         <Col md={6} lg={4} xl={3} key={bond.bondId.toString()} style={{ marginBottom: "20px" }}>

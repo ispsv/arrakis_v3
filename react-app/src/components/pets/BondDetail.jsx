@@ -18,14 +18,14 @@ export const BondDetail = (props) => {
           </Card.Title>
           <Card.Body className="card-body">
           <Card.Text className="card-text">
-          <span>Bond Maturity Date: </span>
+          <span><strong>Bond Maturity Date:</strong><br></br> </span>
           <span className={isDateBeforeCurrentDate ? "text-danger" : "text-success"}>
             {props.info.bondMaturityDate}
           </span>
         </Card.Text>
-          <Card.Text className="card-text"> Bond Type: {props.info.type}</Card.Text>
+          <Card.Text className="card-text"> <strong>Bond Type:</strong> <br></br> {props.info.type}</Card.Text>
           <Card.Text className="card-text">
-        <span>Status: </span>
+        <span><strong>Status:</strong> <br></br> </span>
           <span className={isActive && isDateBeforeCurrentDate ? "text-danger" : "text-success"}>
             {props.info.status}
           </span>
