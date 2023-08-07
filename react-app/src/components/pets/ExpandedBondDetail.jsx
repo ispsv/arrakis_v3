@@ -80,8 +80,4 @@ export const ExpandedBondDetail = (props) => {
     </Fragment>
   )
 };
-
-
-      {/* <Route path="allbonds" element={<Pets />} /> */}
-      {/* <Route path={viewBondURL} element={bond_id && <ViewBond info={bond_id} />}/> */}
     
