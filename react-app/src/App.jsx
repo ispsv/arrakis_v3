@@ -45,8 +45,9 @@ function App() {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto text-center">
             <Navbar.Brand href="/welcome" className="navbar-brand text-center">Home</Navbar.Brand>
-            {userLoggedIn && <Nav.Link href="/bonds" className="nav-link nav-item text-center">All Bonds</Nav.Link>}
-            {userLoggedIn && <Nav.Link href={`/users/${user.userId}/bonds`} className="nav-link nav-item text-center">Your Bonds</Nav.Link>}
+            {userLoggedIn && <Nav.Link href="/allbonds" className="nav-link nav-item text-center">All Bonds</Nav.Link>}
+            {userLoggedIn && <Nav.Link href="/userbonds" className="nav-link nav-item text-center">Your Bonds</Nav.Link>}
+            {/* <Nav.Link href="/bonds" className="nav-link nav-item text-center">View Bond</Nav.Link> */}
             <Button
               variant="primary"
               className="btn btn-primary-disabled"
@@ -73,8 +74,8 @@ function App() {
       {userLoggedIn ? authLinks : guestLinks}
       
       <Routes>
-        <Route path="/bonds" element={<AllBonds />} />
-        {userLoggedIn && <Route exact path="/users/:userId/bonds" element={<UserBonds user={user} />} />}
+        <Route path="allbonds" element={<AllBonds />} />
+        {userLoggedIn && <Route exact path="userbonds" element={<UserBonds user={user} />} />}
         <Route path="/bonds/:bondId" element={<ViewBond />} />
         <Route path="welcome" element={<Welcome />} />
         <Route path="/" element={<AuthenticationComponent logIn={isLoggedIn} setNewUser={setNewUser} />} />
