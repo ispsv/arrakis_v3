@@ -15,7 +15,6 @@ const AllBonds = () => {
     const [sortOrder, setSortOrder] = useState('asc_id');
     const [showPrev, setShowPrev] = useState(false);
     const [showNext, setShowNext] = useState(false);
-    const [showToday, setShowToday] = useState(false);
     const [currentDate, setCurrentDate] = useState(new Date());
     const [dateInput, setDateInput] = useState('');
     const [showAlert, setShowAlert] = useState(false);
@@ -30,7 +29,7 @@ const AllBonds = () => {
 
     useEffect(() => {
         filterBonds();
-    }, [showPrev, showNext, showToday, currentDate]);
+    }, [showPrev, showNext, currentDate]);
 
 
 
@@ -80,11 +79,6 @@ const AllBonds = () => {
         filterBonds()
     }
 
-    const handleShowToday = (event) => {
-        setShowToday(event.target.checked);
-        filterBonds()
-    }
-
     const handleDateInputChange = (event) => {
         setDateInput(event.target.value);
     }
@@ -121,20 +115,14 @@ const AllBonds = () => {
 
             const isPrev = bondDate > prev5Date && bondDate < currentDate;
             const isNext = bondDate < next5Date && bondDate > currentDate;
-            const isToday = bondDate.getFullYear() === currentDate.getFullYear() &&
-                            bondDate.getMonth() === currentDate.getMonth() &&
-                            bondDate.getDate() === currentDate.getDate();
 
-            if (showPrev && showNext && showToday) {
-                return isPrev || isNext || isToday;
+            if (showPrev && showNext) {
+                return isPrev || isNext;
             } else if (showPrev) {
                 return isPrev;
             } else if (showNext) {
                 return isNext;
-            } else if (showToday) {
-                return isToday;
-            }
-                else {
+            } else {
                 return true;
             }
         });
@@ -175,13 +163,6 @@ const AllBonds = () => {
             label="Matures in Next 5 Days"
             checked={showNext}
             onChange={handleShowNext}
-            style={{ marginRight: "10px" }}
-        />
-        <Form.Check
-            type="checkbox"
-            label="Matures Today"
-            checked={showToday}
-            onChange={handleShowToday}
             style={{ marginRight: "10px" }}
         />
       </span>
