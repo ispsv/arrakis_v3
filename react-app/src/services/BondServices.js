@@ -13,6 +13,10 @@ export const getUserBonds = (userId) => {
   const user_bonds = axios.get(`${hostNameUrl}/users/${userId}/bonds`);
   return user_bonds;
 };
+export const getUserTrades = (userId) => {
+  const user_trades = axios.get(`${hostNameUrl}/users/${userId}/trades`);
+  return user_trades;
+};
 // Function to fetch bond details based on bondId
 export const getBondDetails = (id) => {
     const selected_bond  = axios.get(`${hostNameUrl}/bonds/${id}`);
@@ -21,16 +25,5 @@ export const getBondDetails = (id) => {
 }
 export const getTradesDetails = (id) => {
   const all_trades_for_selected_bond  = axios.get(`${hostNameUrl}/bonds/${id}/trades`);
-  // const all_trades_for_selected_bond = response.data;
-  // console.log(all_trades_for_selected_bond);
   return all_trades_for_selected_bond;
 };
-// export const getTradesDetails = (id) => {
-//   return axios.get(`${hostNameUrl}/bonds/${id}/trades`)
-//     .then(res => res.data)
-//     .catch(error => {
-//       console.log("Error fetching trade details:", error);
-//       return [];
-//     });
-    
-// };
