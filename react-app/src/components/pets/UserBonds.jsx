@@ -16,6 +16,7 @@ const UserBonds = (props) => {
     const [sortOrder, setSortOrder] = useState('asc_id');
     const [showPrev, setShowPrev] = useState(false);
     const [showNext, setShowNext] = useState(false);
+    const [showToday, setShowToday] = useState(false);
     const [currentDate, setCurrentDate] = useState(new Date());
     const [dateInput, setDateInput] = useState('');
     const [showAlert, setShowAlert] = useState(false);
@@ -30,7 +31,7 @@ const UserBonds = (props) => {
 
     useEffect(() => {
         filterBonds();
-    }, [showPrev, showNext, currentDate]);
+    }, [showPrev, showNext, showToday, currentDate]);
 
     const getBondsFromAPI = ()=>{
         getUserBonds(props.user.userId)
@@ -87,6 +88,11 @@ const UserBonds = (props) => {
         filterBonds();
     }
 
+    const handleShowToday = (event) => {
+        setShowToday(event.target.checked);
+        filterBonds();
+    }
+
     const handleDateInputChange = (event) => {
         setDateInput(event.target.value);
     }
@@ -124,13 +130,19 @@ const UserBonds = (props) => {
 
             const isPrev = bondDate > prev5Date && bondDate < currentDate;
             const isNext = bondDate < next5Date && bondDate > currentDate;
+            const isToday = bondDate.getFullYear() === currentDate.getFullYear() &&
+                            bondDate.getMonth() === currentDate.getMonth() &&
+                            bondDate.getDate() === currentDate.getDate();
 
-            if (showPrev && showNext) {
-                return isPrev || isNext;
+
+            if (showPrev && showNext && showToday) {
+                return isPrev || isNext || isToday;
             } else if (showPrev) {
                 return isPrev;
             } else if (showNext) {
                 return isNext;
+            } else if (showToday) {
+                return isToday;
             } else {
                 return true;
             }
@@ -170,6 +182,13 @@ const UserBonds = (props) => {
             label="Matures in Next 5 Days"
             checked={showNext}
             onChange={handleShowNext}
+            style={{ marginRight: "10px" }}
+        />
+        <Form.Check
+            type="checkbox"
+            label="Matures Today"
+            checked={showToday}
+            onChange={handleShowToday}
             style={{ marginRight: "10px" }}
         />
       </span>
