@@ -2,9 +2,7 @@ import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import React, {useState, useEffect, Fragment} from 'react';
 import { useNavigate } from 'react-router-dom';
-import { getTradesDetails } from '../../services/BondServices';
-import ViewBond from './ViewBond';
-// import { ViewBond } from "./ViewBond";
+import { getTradesDetails } from '../services/BondServices';
 
 export const ExpandedBondDetail = (props) => {
   const [bookDetails, setBookDetails] = useState([]);

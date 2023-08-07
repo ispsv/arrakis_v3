@@ -5,11 +5,11 @@ import Navbar from 'react-bootstrap/Navbar';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import './App.css';
-import AllBonds from "./components/pets/AllBonds";
-import UserBonds from "./components/pets/UserBonds";
-import { Welcome } from "./components/pets/Welcome";
-import ViewBond from "./components/pets/ViewBond";
-import AuthenticationComponent from "./components/pets/AuthenticationComponent";
+import AllBonds from "./components/AllBonds";
+import UserBonds from "./components/UserBonds";
+import { Welcome } from "./components/Welcome";
+import ViewBond from "./components/ViewBond";
+import AuthenticationComponent from "./components/AuthenticationComponent";
 
 function App() {
   const [userLoggedIn, setUserLoggedIn] = useState(false);

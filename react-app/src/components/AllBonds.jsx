@@ -1,16 +1,15 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
-import { getUserBonds } from '../../services/BondServices';
-import { ExpandedBondDetail } from './ExpandedBondDetail';
+import { BondDetail } from "./BondDetail";
+import { getAllBonds } from '../services/BondServices';
 import Dropdown from 'react-bootstrap/Dropdown';
 import Form from 'react-bootstrap/Form';
 import Button from "react-bootstrap/Button";
 import Alert from "react-bootstrap/Alert";
-import {BondDetail} from "./BondDetail";
 
-const UserBonds = (props) => {
+const AllBonds = () => {
     const [bonds, setBonds] = useState([]);
     const [bondData, setBondData] = useState([]);
     const [sortOrder, setSortOrder] = useState('asc_id');
@@ -21,7 +20,7 @@ const UserBonds = (props) => {
     const [dateInput, setDateInput] = useState('');
     const [showAlert, setShowAlert] = useState(false);
 
-    useEffect( () => {
+    useEffect(() => {
         getBondsFromAPI();
     }, []);
 
@@ -33,13 +32,14 @@ const UserBonds = (props) => {
         filterBonds();
     }, [showPrev, showNext, showToday, currentDate]);
 
-    const getBondsFromAPI = ()=>{
-        getUserBonds(props.user.userId)
+
+
+    const getBondsFromAPI = () => {
+        getAllBonds()
             .then(res => {
                 console.log(res.data)
                 setBonds(res.data);
                 setBondData(res.data);
-                sortBondsByAscendingId(res.data)
             })
             .catch(err => {
                 setBonds([]);
@@ -51,15 +51,7 @@ const UserBonds = (props) => {
         setShowAlert(false);
     };
 
-
-    const sortBondsByAscendingId = (data) => {
-        const sortedBonds = [...data].sort((a, b) => a.bondId - b.bondId);
-        setBonds(sortedBonds);
-        setSortOrder('asc_id');
-    }
-
     const handleSortClick = (order) => {
-
         const sortedBonds = [...bonds].sort((a, b) => {
             if (order === 'asc_id') {
                 return a.bondId - b.bondId;
@@ -80,17 +72,17 @@ const UserBonds = (props) => {
 
     const handleShowPrev = (event) => {
         setShowPrev(event.target.checked);
-        filterBonds();
+        filterBonds()
     }
 
     const handleShowNext = (event) => {
         setShowNext(event.target.checked);
-        filterBonds();
+        filterBonds()
     }
 
     const handleShowToday = (event) => {
         setShowToday(event.target.checked);
-        filterBonds();
+        filterBonds()
     }
 
     const handleDateInputChange = (event) => {
@@ -119,7 +111,6 @@ const UserBonds = (props) => {
         }, 3000);
     }
 
-
     const filterBonds = () => {
         const filteredBonds = bondData.filter((bond) => {
 
@@ -133,7 +124,6 @@ const UserBonds = (props) => {
             const isToday = bondDate.getFullYear() === currentDate.getFullYear() &&
                             bondDate.getMonth() === currentDate.getMonth() &&
                             bondDate.getDate() === currentDate.getDate();
-
 
             if (showPrev && showNext && showToday) {
                 return isPrev || isNext || isToday;
@@ -157,11 +147,14 @@ const UserBonds = (props) => {
         setBonds(filteredBonds);
     }
 
+
+
     return (
         <>
             <div className="list-group text-center">
                 <div className="d-flex justify-content-between subnav">
-                    <h5 style={{ marginLeft: "4.5%", marginTop: "2%", marginBottom: "1%" }}>Your Active Bonds</h5>
+                    <h5 style={{ marginLeft: "4.5%", marginTop: "2%", marginBottom: "1%" }}>All Active Bonds</h5>
+
                     <span style={{ marginLeft: "20%", textAlign: "left", marginTop: "1.25%" }}>
 
                     <div className="d-flex align-items-center"> {/* Flex container */}
@@ -176,7 +169,7 @@ const UserBonds = (props) => {
                     </div></span>
 
 
-                    <span style={{ marginLeft: "4%", textAlign: "left", marginTop: "0.05%" }}>
+                    <span style={{ marginLeft: "4%", textAlign: "left", marginTop: "0.25%" }}>
         <Form.Check
             type="checkbox"
             label="Matured in Previous 5 Days"
@@ -230,12 +223,12 @@ const UserBonds = (props) => {
             </div>
 
             <h4 style={{ marginLeft: "4.5%", marginTop: "2%", marginBottom: "1%" }}> Total count is: <small className="text-body-secondary">{bonds.length}</small></h4>
-            <Container fluid style={{marginLeft: "3%", marginTop: "2%", width: "95%", marginRight: "2%"}} >
+            <Container fluid style={{ marginLeft: "0.5%", marginTop: "2%", marginBottom: "2%", marginRight: "2%" }} >
                 <Row>
                     {bonds.map(bond => (
                         <Col md={6} lg={4} xl={3} key={bond.bondId.toString()} style={{ marginBottom: "20px" }}>
                             <div className='container'>
-                                <ExpandedBondDetail info={bond} />
+                                <BondDetail info={bond} />
                             </div>
                         </Col>
                     ))}
@@ -246,7 +239,6 @@ const UserBonds = (props) => {
     )
 
 
-
 }
 
-export default UserBonds;
+export default AllBonds;

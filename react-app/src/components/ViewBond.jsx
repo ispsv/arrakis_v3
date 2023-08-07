@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { getBondDetails, getTradesDetails} from "../../services/BondServices";
+import { getBondDetails, getTradesDetails} from "../services/BondServices";
 import Table from 'react-bootstrap/Table';
 import { useParams } from 'react-router-dom';
-import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
-import '../../App.css';
+import '../App.css';
 
 const ViewBond = () => {
   const { bondId } = useParams();
