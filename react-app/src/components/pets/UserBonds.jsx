@@ -137,6 +137,12 @@ const UserBonds = (props) => {
 
             if (showPrev && showNext && showToday) {
                 return isPrev || isNext || isToday;
+            } else if (showPrev && showNext) {
+                return isPrev || isNext;
+            } else if (showPrev && showToday) {
+                return isPrev || isToday;
+            } else if (showNext && showToday){
+                return isNext || isToday;
             } else if (showPrev) {
                 return isPrev;
             } else if (showNext) {
