@@ -121,7 +121,7 @@ const ViewBond = () => {
         </span>
       </td>
       <td>{trade.quantity || "-"}</td>
-      <td>{trade.bond.unitPrice || "-"}</td>
+      <td>{trade.unitPrice || "-"}</td>
       <td>{trade.currency || "-"}</td>
       <td>{trade.type || "-"}</td>
       <td>{trade.date || "-"}</td>
